@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import ApiEffect from './components/API-news'
+import NewsApi from './components/NewsApi'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +11,7 @@ function App() {
     <>
       <div>
         <h1>Nightly News</h1>
-      <ApiEffect/>
+      <NewsApi/>
       </div>
    
 
