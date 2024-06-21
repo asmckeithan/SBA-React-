@@ -30,7 +30,7 @@ const NewsApi = () => {
     }
   
     return (
-      <ul>
+      <ol id='articles'>
         {articles.map((article, index) => (
           <li key={index}>
             <h2>{article.title}</h2>
@@ -38,7 +38,7 @@ const NewsApi = () => {
             <p>{article.date}</p>
           </li>
         ))}
-      </ul>
+      </ol>
     );
   };
 

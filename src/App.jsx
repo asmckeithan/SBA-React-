@@ -9,8 +9,14 @@ function App() {
 
   return (
     <>
+      <div class="topnav">
+      <a href="#home">Home</a>
+      <a href="#news">News Room</a>
+    </div>
       <div>
         <h1>Latest Tech News </h1>
+        <input  class='search' type="text" placeholder='search latest news here'  />
+        <button>Submit</button>
       <NewsApi/>
       </div>
    
