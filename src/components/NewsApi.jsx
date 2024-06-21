@@ -1,10 +1,11 @@
 // src/MarvelCharacters.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-
+import { useSearch } from '../context/searchcontext';
 
 
 const NewsApi = () => {
+  const{state} = useSearch()
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +20,7 @@ const NewsApi = () => {
           setError(error);
           setLoading(false);
         });
-    }, []);
+    }, [state.searchTerm]);
   
     if (loading) {
       return <div>Loading...</div>;
@@ -31,11 +32,11 @@ const NewsApi = () => {
   
     return (
       <ol id='articles'>
-        {articles.map((article, index) => (
+        {articles && articles.map((article, index) => (
           <li key={index}>
             <h2>{article.title}</h2>
             <p>{article.description}</p>
-            <p>{article.date}</p>
+            <p>{article.publishedAt}</p>
           </li>
         ))}
       </ol>

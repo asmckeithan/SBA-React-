@@ -1,23 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import './App.css'
 import NewsApi from './components/NewsApi'
+import Searchbar from './components/Searchbar'
+import { SearchProvider } from './context/searchcontext'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  
 
   return (
     <>
-      <div class="topnav">
+      <div className="topnav">
       <a href="#home">Home</a>
       <a href="#news">News Room</a>
     </div>
-      <div>
-        <h1>Latest Tech News </h1>
-        <input  class='search' type="text" placeholder='search latest news here'  />
-        <button>Submit</button>
-      <NewsApi/>
+      <div id='container'>
+        <h1>Keeping Up with the TECH Trends</h1>
+       <SearchProvider>
+        <div>
+          <Searchbar/>
+          <NewsApi/>
+        </div>
+       </SearchProvider>
+      
       </div>
    
 
