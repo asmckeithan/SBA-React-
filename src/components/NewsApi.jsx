@@ -1,28 +1,46 @@
 // src/MarvelCharacters.js
 import React, { useState, useEffect } from 'react';
-import {useParams} from 'react-dom'
+import axios from 'axios'
 
 
 
 const NewsApi = () => {
-  const [newsArticle, setArticles] = useState(null);
+  const [articles, setArticles] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=24ac05cd8b5a42629d17b3e5281bab98')
-      .then(response => response.json())
-      .then(data => console.log(data));
-  }, []);
-
-  if (!newsArticle) return <p>Loading...</p>;
-
-  return (
-    <div>
-      <h1>{newsArticle.name}</h1>
-      <p> Article: {newsArticle.article}</p>
-      <img src={newsArticle.url} alt={newsArticle.name} />
-    </div>
-  );
-};
+    axios.get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=24ac05cd8b5a42629d17b3e5281bab98')
+      .then(response => {
+        setArticles(response.data.articles)
+        setLoading(false)
+      }) 
+        .catch(error => {
+          setError(error);
+          setLoading(false);
+        });
+    }, []);
+  
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+  
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    }
+  
+    return (
+      <ul>
+        {articles.map((article, index) => (
+          <li key={index}>
+            <h2>{article.title}</h2>
+            <p>{article.description}</p>
+            <p>{article.date}</p>
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
 export default NewsApi;
 

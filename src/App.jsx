@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>Nightly News</h1>
+        <h1>Latest Tech News </h1>
       <NewsApi/>
       </div>
    
